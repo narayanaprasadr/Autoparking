@@ -32,7 +32,7 @@ public class AutoParkingSystem {
 		String[] initialXAndY = arguments[0].split(",");
 		if(initialXAndY.length != 2) throw new Exception("Invalid Positions");
 		
-		System.out.println(initialXAndY[0]+initialXAndY[1]);
+		log.debug("Initial Location -> " + initialXAndY[0]+","+initialXAndY[1]);
 		
 		currentX = Integer.parseInt(initialXAndY[0]);
 		currentY = Integer.parseInt(initialXAndY[1]);
@@ -44,37 +44,36 @@ public class AutoParkingSystem {
 		
 		
 		for(char seq : parkingSeq){
-			System.out.println(seq);
 			switch(seq){
 			case 'f':
 			case 'F':
-				System.out.println("Moving Forward");
+				log.debug("Moving Forward");
 				move();
 				break;
 			case 'r':
 			case 'l':
 			case 'R':
 			case 'L':	
-				System.out.println("Turning " + seq);
+				log.debug("Turning " + seq);
 				changeDirection(seq);
 				break;
 			default:
 				throw new Exception("Invalid Sequence: Sequence should be R, L and F");
 			}
 		}
-		System.out.println("Current Position: (" + (currentX) + "," + (currentY) +")");
+		log.debug("Final Position: (" + (currentX) + "," + (currentY) +")");
 		return "Current Position: (" + (currentX) + "," + (currentY) +")";
 	}
 
 	private void changeDirection(char turn) {
-		System.out.println("Current Direction : " + direction);
+		log.debug("Current Direction : " + direction);
 		
 		if('R' == turn || 'r' == turn){
 			turnRight();
-			System.out.println("TurninG Right " + direction);
+			log.debug("Turning Right " + direction);
 		}else if('L' == turn || 'l' == turn){
 			turnLeft();
-			System.out.println("TurninG Left " + direction);
+			log.debug("Turning Left " + direction);
 		}
 	}
 

@@ -29,12 +29,10 @@ public class AutoParkingSystemTest {
 
 	@Test
 	public void TestAutoParkingSystem() throws Exception {
-		log.info("--------- Executing Test");
-		//andDo(MockMvcResultHandlers.print()).
+		log.info("--------- Executing Test ---------");
 		mockMvc.perform(MockMvcRequestBuilders.get(URL + "{id}", "5,5:RFLFRFLF")).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().string("Current Position: (7,7)"));
-		log.info("--------- --------- ");
 		mockMvc.perform(MockMvcRequestBuilders.get(URL + "{id}", "6,6:FFLFFLFFLFF")).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().string("Current Position: (6,6)"));
-		log.info("--------- --------- ");
 		mockMvc.perform(MockMvcRequestBuilders.get(URL + "{id}", "5,5:FLFLFFRFFF")).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().string("Current Position: (4,1)"));
+		log.info("--------- End Test --------- ");
 	}
 }
